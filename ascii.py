@@ -77,3 +77,58 @@ def priest_ascii():
         with open('ASCII/priest.txt', 'r') as f:
             for line in f:
                 print(line.rstrip())
+
+def army_ascii():
+        with open('ASCII/army.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def mercenaries_ascii():
+        with open('ASCII/warriors.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def warriors_ascii():
+        with open('ASCII/warriors2.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def money_ascii():
+        with open('ASCII/money.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def battle_ascii():
+        with open('ASCII/battle.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def throne_ascii():
+        with open('ASCII/throne.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def new_pope_ascii():
+        with open('ASCII/newpope.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def executioner_ascii():
+        with open('ASCII/executioner.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def victory_ascii():
+        with open('ASCII/victory.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def advisors_ascii():
+        with open('ASCII/advisors.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
+def endscreen_ascii():
+        with open('ASCII/endscreen.txt', 'r') as f:
+            for line in f:
+                print(line.rstrip())

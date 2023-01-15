@@ -30,38 +30,29 @@ class Game:
         self.intro()
         #Game settings
         self.gameOver = False
-        self.goldcoins = 0
-        self.health = 100
         self.currentLevel = 1
         #Game Loop
         while True:
             self.gameLevels()
-            if self.currentLevel != 2:
-                self.inputTaker()
             if self.gameOver == True:
                 break
 
     def intro(self):
         print("""
-        "You are a young squire living in the kingdom of Camelot, a land of great beauty and prosperity. However, the kingdom is facing a great challenge as the balance of power between the king and the Church has become unstable. The Church has grown too powerful and has started to interfere with the king's rule.
-        The king has called upon all able-bodied men to help restore the balance of power and bring peace to the kingdom. As a squire, you are duty-bound to answer the call and defend your kingdom."
-        
-        But before you set out on your journey, you must make a decision:
-
-        - Will you pledge your allegiance to the king and fight to restore balance?
-        - Or will you join the Church and fight for their cause?
-        The choice is yours, and the adventure will unfold based on your decision.
-        \n""")
+        Welcome to the kingdom of Camelot, a land of great beauty and prosperity. However, the kingdom is facing a great challenge as the balance of power between the king and the Church has become unstable. The Church has grown too powerful and has started to interfere with the king's rule.
+        The king has called upon all able-bodied men to help restore the balance of power and bring peace to the kingdom. As a young squire, you are duty-bound to answer the call and defend your kingdom.
+        """)
         knight_ascii()
         print("")
 
+        print("But before you set out on your journey, you must make a decision:")
+
         q = [
         inquirer.List('startgame',
-                message='What will you do?',
+                message='Which path will you choose?',
                 choices=['Pledge allegiance to the king', 'Join the Church'],
                 default='Pledge allegiance to the king')]
 
-        #Retrieves answer
         self.answers = inquirer.prompt(q)
         self.startgame = self.answers['startgame']
 
@@ -73,828 +64,246 @@ class Game:
             self.currentLevel = 5
 
     def gameLevels(self):
-        if self.currentLevel == 1:
-            self.level1()
-        if self.currentLevel == 2:
-            self.level2()
-        if self.currentLevel == 3:
-            self.level3()
-        if self.currentLevel == 4:
-            self.level4()
-        if self.currentLevel == 5:
-             self.level5()
-        if self.currentLevel == 6:
-            self.level6()
-        if self.currentLevel == 7:
-            self.level7()
-        if self.currentLevel == 8:
-            self.level8()
-        if self.currentLevel == 9:
-            self.level9()
-        if self.currentLevel == 10:
-            self.level10()
-        if self.currentLevel == 11:
-             self.level11()
-        if self.currentLevel == 12:
-            self.level12()
-        if self.currentLevel == 13:
-            self.level13()
-        if self.currentLevel == 14:
-            self.level14()
-        if self.currentLevel == 15:
-            self.level15()
-        if self.currentLevel == 16:
-            self.level16()
-        if self.currentLevel == 17:
-             self.level17()
-        if self.currentLevel == 18:
-            self.level18()
-        if self.currentLevel == 19:
-            self.level19()
-        if self.currentLevel == 20:
-            self.level20()
-        if self.currentLevel == 21:
-            self.level21()
-        if self.currentLevel == 22:
-            self.level22()
-        if self.currentLevel == 23:
-            self.level23()
-        if self.currentLevel == 24:
-            self.level24()
+        level_functions = [self.level1, self.level2, self.level3, self.level4, self.level5, self.level6, self.level7, self.level8, self.level9, self.level10, self.level11, self.level12, self.level13, self.level14, self.level15, self.level16, self.level17, self.level18, self.level19, self.level20, self.level21, self.level22, self.level23, self.level24, self.level25]
+        if self.currentLevel > 0 and self.currentLevel <= 25:
+            level_functions[self.currentLevel - 1]()
         if self.currentLevel == 25:
-            self.level25()
-        if self.currentLevel == 26:
-            self.level26()
-        if self.currentLevel == 27:
-            self.level27()
-        if self.currentLevel == 28:
-            self.level28()
-        if self.currentLevel == 29:
-            self.level29()
-        if self.currentLevel == 30:
-            self.level30()
-        if self.currentLevel == 31:
-            self.level31()
-        if self.currentLevel == 32:
-            self.level32()
-        if self.currentLevel == 33:
-            self.level33()
-        if self.currentLevel == 34:
-            self.level34()
-        if self.currentLevel == 35:
-            self.level35()
-        if self.currentLevel == 36:
-            self.level36()
-        if self.currentLevel == 37:
-            self.level37()
-        if self.currentLevel == 38:
-            self.level38()
-        if self.currentLevel == 39:
-            self.level31()
-        if self.currentLevel == 40:
-            self.level32()
-        if self.currentLevel == 41:
-            self.level33()
-        if self.currentLevel == 42:
-            self.level34()
-        if self.currentLevel == 43:
-            self.level35()
-        if self.currentLevel == 44:
-            self.level36()
-        if self.currentLevel == 45:
-            self.level37()
-        if self.currentLevel == 46:
-            self.level38()
-        if self.currentLevel == 47:
-            self.level35()
-        if self.currentLevel == 48:
-            self.level36()
-        if self.currentLevel == 49:
-            self.level37()
-        if self.currentLevel == 50:
-            self.level38()
-
-    def inputTaker(self):
-        q = [
-        inquirer.List('action',
-
-                message='What do you want to do?',  
-                choices=['Check inventory','Quit game'],
-                default='Check inventory')]
-
-        #Retrieves answer
-        self.answers = inquirer.prompt(q)
-        self.action = self.answers['action']
-
-        if self.action == 'Check inventory':
-            self.inventory()
-        if  self.action == 'Quit game':
-            exit()
-
-    def inventory(self): 
-        #Armor lists
-        helmets = ['Leather','Chainmail','Sterling Silver','Gold Plated']
-        breastplates = ['Leather','Chainmail','Sterling Silver','Gold Plated']
-        leggings = ['Leather','Chainmail','Sterling Silver','Gold Plated']
-        boots = ['Leather','Chainmail','Sterling Silver','Gold Plated']
-        #Weapon lists
-        swords = ['Brass','Iron','Odisum','Quartz']
-        rangedweapons = ['Crossbow']
-        ammocount = 15
-        #Item List
-        self.items = []
-        
-        #Inventory 
-        head = helmets[0]
-        chest = breastplates[0]
-        pants = leggings[0]
-        shoes = boots[0]
-        sword = swords[0]
-        ranged = rangedweapons[0]
-
-        #Inventory
-        inventory = [
-        "============Armor==============\n",
-        f"{head} Helmet\n",
-        f"{chest} Breastplate\n",
-        f"{pants} Leggings\n",
-        f"{shoes} Boots\n",
-        "============Weapons==============\n",
-        f"{sword} Sword\n",
-        f"{ranged} ({ammocount}x)\n",
-        "============Items==============\n",
-        f"{', '.join(self.items)}\n",
-        ]
-        # Calculate the number of hearts to display based on the player's health
-        num_hearts = self.health // 20  # Divide by 20 to get a max of 5 hearts
-        # Create a string with the heart symbols
-        hearts = "❤" * num_hearts
-        # Add spaces to fill out the remaining slots
-        spaces = "   " * (5 - num_hearts)  # 5 total slots, minus the number of hearts
-        # Print the health bar
-        print("Your health:", self.health, "[" + hearts + spaces + "]","-------","Gold Coins:",self.goldcoins)
-        print(''.join(inventory))
+            self.gameOver = True
 
     def level1(self):
         print("""
-        You have pledged your allegiance to the king, and set out on your journey to restore balance to the kingdom.
-        Your first task is to gather allies and gain support from the local lords and ladies.
-        As you approach the gates of Camelot, you can see the grand castle in the distance.
+        You have arrived at the neighboring kingdom of Logres, where you hope to gain the support of King Leodegrance.
+        However, upon arriving, you are informed that the king is away on a hunting trip and the kingdom is facing a severe drought.
+        You must make a decision on how to proceed.
         """)
+
+        print("""
+        - Attempt to sneak into Logres and gather intel on King Leodegrance's stance.
+        - Send a diplomatic envoy to negotiate with Sir Kay for aid.
+        - Send an army to conquer Logres and force their support.
+        """)
+        
         castle_ascii()
         print("")
 
         q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Gather allies', 'Gain support', 'Assess the situation'],
-                    default='Gather allies')]
+        inquirer.List('level_one',
+        message='What will you do?',
+        choices=['Sneak into Logres', 'Send a diplomatic envoy', 'Send an army'],
+        default='Sneak into Logres')]
 
         self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
+        self.level_one = self.answers['level_one']
 
-        if self.nextmove == 'Gather allies':
+        if self.level_one == 'Sneak into Logres':
+            os.system('cls')
             self.currentLevel = 2
-        if self.nextmove == 'Gain support':
+        elif self.level_one == 'Send a diplomatic envoy':
+            os.system('cls')
             self.currentLevel = 3
-        if self.nextmove == 'Assess the situation':
+        elif self.level_one == 'Send an army':
+            os.system('cls')
             self.currentLevel = 4
 
-        os.system('cls')
-            
     def level2(self):
         print("""
-        You decide to start by visiting the local towns and farms to gather allies.
-        As you travel, you come across a small village on the outskirts of Camelot. The villagers seem friendly and willing to listen to your message.
+        You have successfully snuck into Logres and are now gathering intel on King Leodegrance's stance towards Camelot.
+        You infiltrate the castle and overhear a conversation between Sir Kay and one of the king's advisors.
+        They mention that King Leodegrance is considering an alliance with Camelot, but is hesitant due to the kingdom's current instability.
         """)
-        village_ascii()
-        print("")
+
+        print("""
+        - Attempt to sway the advisor to support Camelot
+        - Attempt to kidnap Sir Kay and use him as leverage
+        - Leave Logres and report back to Camelot
+        """)
 
         q = [
-            inquirer.List('allygather',
-                    message='What will you do?',
-                    choices=['Speak to the village leader', 'Speak to the villagers', 'Leave the village'],
-                    default='Speak to the village leader')]
+        inquirer.List('level2_sneak',
+        message='What will you do?',
+        choices=['Sway the advisor', 'Kidnap Sir Kay', 'Leave Logres'],
+        default='Sway the advisor')]
 
-        #Retrieves answer
         self.answers = inquirer.prompt(q)
-        self.allygather = self.answers['allygather']
+        self.level2_sneak = self.answers['level2_sneak']
 
-        if self.allygather == 'Speak to the village leader':
+        if self.level2_sneak == 'Sway the advisor':
+            os.system('cls')
+            print("You successfully sway the advisor to support Camelot.")
             self.currentLevel = 6
-        if self.allygather == 'Speak to the villagers':
-            self.currentLevel = 7
-        if self.allygather == 'Leave the village':
-            self.currentLevel = 8
-
-        os.system('cls')
+        elif self.level2_sneak == 'Kidnap Sir Kay':
+            os.system('cls')
+            print("You attempt to kidnap Sir Kay, but the plan backfires and you are captured by Logres' guards.")
+            self.currentLevel = 9
+        elif self.level2_sneak == 'Leave Logres':
+            os.system('cls')
+            print("You leave Logres and report back to Camelot with the information you have gathered.")
+            self.currentLevel = 10
 
     def level3(self):
         print("""
-        You have decided to gain support from the local lords and ladies.
-        As you make your way to the castle, you come across a group of lords and ladies who are discussing the state of the kingdom.
-        You approach them and introduce yourself, explaining your mission to restore balance to the kingdom.
+        You have sent a diplomatic envoy to negotiate with Sir Kay for aid.
+        Sir Kay tells you that the kingdom of Logres is willing to offer aid to Camelot but in exchange for a favor.
         """)
-        castle3_ascii()
+
+        print("""
+        - Agree to the favor and accept the aid
+        - Refuse the favor and decline the aid
+        """)
 
         q = [
-            inquirer.List('support',
-                    message='Will the lords and ladies support you?',
-                    choices=['Yes', 'No'],
-                    default='Yes')]
+        inquirer.List('level3_diplomatic',
+        message='What will you do?',
+        choices=['Agree to the favor', 'Refuse the favor'],
+        default='Agree to the favor')]
 
         self.answers = inquirer.prompt(q)
-        self.support = self.answers['support']
+        self.level3_diplomatic = self.answers['level3_diplomatic']
 
-        if self.support == 'Yes':
-            print("The lords and ladies have agreed to support you in your mission.")
-            self.currentLevel = 9
-        elif self.support == 'No':
-            print("The lords and ladies have refused to support you.")
-            self.currentLevel = 10
+        if self.level3_diplomatic == 'Agree to the favor':
+            print("You agree to the favor and accept the aid from Logres.")
+            self.currentLevel = 11
+        elif self.level3_diplomatic == 'Refuse the favor':
+            print("You refuse the favor and decline the aid from Logres.")
+            self.currentLevel = 12
 
         os.system('cls')
 
     def level4(self):
         print("""
-        You have decided to assess the situation before taking any action.
-        As you make your way through the kingdom, you come across a group of merchants who are discussing the state of the kingdom.
-        You approach them and listen in on their conversation to gather information.
+        You have sent an army to conquer Logres and force their support.
+        The battle is fierce and many lives are lost on both sides.
         """)
-        merchants_ascii()
-        print("")
+
+        print("""
+        - Continue to fight and conquer Logres
+        - Negotiate a surrender and spare lives
+        - Retreat and regroup
+        """)
 
         q = [
-            inquirer.List('information',
-                    message='What do you learn from the merchants?',
-                    choices=['The Church has been exerting too much power and control over the kingdom', 'The king is becoming increasingly unpopular among the people', 'The kingdom is facing economic troubles'],
-                    default='The Church has been exerting too much power and control over the kingdom')]
+        inquirer.List('level4_conquer',
+        message='What will you do?',
+        choices=['Continue to fight', 'Negotiate a surrender', 'Retreat'],
+        default='Continue to fight')]
 
-        #Retrieves answer
         self.answers = inquirer.prompt(q)
-        self.information = self.answers['information']
+        self.level4_conquer = self.answers['level4_conquer']
 
-        if self.information == 'The Church has been exerting too much power and control over the kingdom':
-            self.currentLevel = 11
-        if self.information == 'The king is becoming increasingly unpopular among the people':
-            self.currentLevel = 12
-        if self.information == 'The kingdom is facing economic troubles':
+        if self.level4_conquer == 'Continue to fight':
+            print("You continue to fight and eventually conquer Logres, gaining their support.")
             self.currentLevel = 13
+        elif self.level4_conquer == 'Negotiate a surrender':
+            print("You negotiate a surrender with Logres, sparing many lives but at the cost of losing the element of surprise.")
+            self.currentLevel = 14
+        elif self.level4_conquer == 'Retreat':
+            print("You retreat and regroup, losing many lives but gaining valuable intel for the next battle.")
+            self.currentLevel = 15
 
-            os.system('cls')
-
+        os.system('cls')
+        
     def level5(self):
         print("""
-        You have decided to join the Church and fight for their cause.
-        As you make your way to the Church's headquarters, you are stopped by a guard.
-        Guard: What is your business here?
+        You have joined the Church and fight for their cause.
+        The Church has tasked you with recruiting new followers to increase their power within the kingdom.
         """)
-        church_ascii()
+
+        print("""
+        - Recruit new followers by spreading the word of the Church through peaceful means.
+        - Use force to convert non-believers to the Church's cause.
+        """)
+        new_pope_ascii()
         print("")
 
         q = [
-            inquirer.List('business',
-                    message='You',
-                    choices=['I am here to offer my services as a soldier for the Church', 'I am here to become a member of the Church\'s clergy', 'I am here to make a donation to the Church'],
-                    default='I am here to offer my services as a soldier for the Church')]
+        inquirer.List('level5_church',
+        message='What will you do?',
+        choices=['Peaceful recruitment', 'Use force'],
+        default='Peaceful recruitment')]
 
-        #Retrieves answer
         self.answers = inquirer.prompt(q)
-        self.business = self.answers['business']
+        self.level5_church = self.answers['level5_church']
 
-        if self.business == 'I am here to offer my services as a soldier for the Church':
-            self.currentLevel = 14
-        if self.business == 'I am here to become a member of the Church\'s clergy':
-            self.currentLevel = 15
-        if self.business == 'I am here to make a donation to the Church':
-            self.currentLevel = 16
+        if self.level5_church == 'Peaceful recruitment':
+            print("You successfully recruit new followers to the Church through peaceful means.")
+            self.currentLevel = 7
+        elif self.level5_church == 'Use force':
+            print("You use force to convert non-believers to the Church's cause, but it backfires and causes resentment among the people.")
+            self.currentLevel = 8
 
         os.system('cls')
 
     def level6(self):
-            print("""
-            You approach the village leader and introduce yourself. You explain your mission to restore balance to the kingdom and ask for their support.
-            The village leader listens carefully and considers your request.
-            """)
-            village_leader_ascii()
-            print("")
+        print("""
+        You have returned to Camelot with the information gathered from your adventure.
+        The king is pleased with the progress you have made and has a new task for you.
+        """)
 
-            q = [
-                inquirer.List('villageleader',
-                            message='Will the village leader support you?',
-                            choices=['Yes, the village leader agrees to support you.', 'No, the village leader cannot support you.'],
-                            default='Yes, the village leader agrees to support you.')
-            ]
+        print("""
+        - Train new soldiers to bolster Camelot's army
+        - Strengthen alliances with neighboring kingdoms
+        - Invest in new technologies and weapons
+        """)
 
-            self.answers = inquirer.prompt(q)
-            self.villageleader = self.answers['villageleader']
+        q = [
+        inquirer.List('level6',
+        message='What will you do?',
+        choices=['Train new soldiers', 'Strengthen alliances', 'Invest in new technologies'],
+        default='Train new soldiers')]
 
-            if self.villageleader == 'Yes, the village leader agrees to support you.':
-                print("The village leader has agreed to support you in your mission.")
-                self.currentLevel = 17
-            elif self.villageleader == 'No, the village leader cannot support you.':
-                print("The village leader has refused to support you.")
-                self.currentLevel = 18
+        self.answers = inquirer.prompt(q)
+        self.level6 = self.answers['level6']
 
+        if self.level6 == 'Train new soldiers':
             os.system('cls')
+            print("You begin training new soldiers to bolster Camelot's army.")
+            self.currentLevel = 16
+        elif self.level6 == 'Strengthen alliances':
+            os.system('cls')
+            print("You begin strengthening alliances with neighboring kingdoms.")
+            self.currentLevel = 17
+        elif self.level6 == 'Invest in new technologies':
+            os.system('cls')
+            print("You begin investing in new technologies and weapons.")
+            self.currentLevel = 18
 
     def level7(self):
-            print("""
-            You decide to speak to the villagers to gather allies.
-            As you talk to the villagers, you learn about their daily struggles and challenges.
-            You also learn about their hopes and dreams for the kingdom.
-            """)
-            village2_ascii()
-            print("")
-
-            q = [
-                inquirer.List('allygather',
-                        message='What will you do next?',
-                        choices=['Promise to help them with their struggles', 'Promise to make their hopes and dreams a reality', 'Leave the village'],
-                        default='Promise to help them with their struggles')]
-
-            #Retrieves answer
-            self.answers = inquirer.prompt(q)
-            self.allygather = self.answers['allygather']
-
-            if self.allygather == 'Promise to help them with their struggles':
-                print("The villagers are not happy with your promises. They are distrustful of those outside their community.")
-                self.currentLevel = 19
-            if self.allygather == 'Promise to make their hopes and dreams a reality':
-                print("The villagers happy with your promises. They trust your intentions are pure and agree to fight with you.")
-                self.currentLevel = 20
-            if self.allygather == 'Leave the village':
-                self.currentLevel = 21
-
-            os.system('cls')
-        
+        pass
     def level8(self):
-        print("""
-        You decide to leave the village and continue your journey to gather allies.
-        As you travel, you come across a group of knights who have pledged their allegiance to the king. They are willing to join your cause and help restore balance to the kingdom.
-        """)
-        knights_ascii()
-        print("")
-
-        q = [
-            inquirer.List('join',
-                    message='Will you join the knights?',
-                    choices=['Yes', 'No'],
-                    default='Yes')]
-
-        self.answers = inquirer.prompt(q)
-        self.join = self.answers['join']
-
-        if self.join == 'Yes':
-            print("You have gained the support of the knights.")
-            self.currentLevel = 22
-        elif self.join == 'No':
-            print("You have refused the knights' offer of support.")
-            self.currentLevel = 23
-
-        os.system('cls')
-
+        pass
     def level9(self):
-        print("""
-        With the support of the lords and ladies, you feel more confident in your mission.
-        You make your way to the castle and request an audience with the king.
-        The king listens to your proposal and agrees to help restore balance to the kingdom.
-        """)
-        king_ascii()
-        print("")
-
-        q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Gather an army', 'Begin negotiations with the Church', 'Focus on economic reform'],
-                    default='Gather an army')]
-
-        self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
-
-        if self.nextmove == 'Gather an army':
-            self.currentLevel = 24
-        if self.nextmove == 'Begin negotiations with the Church':
-            self.currentLevel = 25
-        if self.nextmove == 'Focus on economic reform':
-            self.currentLevel = 26
-
-        os.system('cls')
-
+        pass
     def level10(self):
-        print("""
-        The lords and ladies have refused to support you in your mission to restore balance to the kingdom.
-        You are left to ponder your next move, as you realize that gaining support from the local nobility may be more difficult than you thought.
-        """)
-
-        q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Look for alternative allies', 'Reassess your approach', 'Give up and return home'],
-                    default='Look for alternative allies')]
-
-        self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
-
-        if self.nextmove == 'Look for alternative allies':
-            self.currentLevel = 27
-        if self.nextmove == 'Reassess your approach':
-            self.currentLevel = 28
-        if self.nextmove == 'Give up and return home':
-            self.currentLevel = 29
-
-        os.system('cls')
-
+        pass
     def level11(self):
-        print("""
-        You have learned from the merchants that the Church has been exerting too much power and control over the kingdom.
-        As you ponder on what to do next, you realize that you must act quickly before the Church's influence becomes too great.
-        """)
-        church_ascii()
-        print("")
-
-        q = [
-            inquirer.List('church',
-                    message='What will you do?',
-                    choices=['Investigate the Church', 'Speak with the king', 'Start a resistance'],
-                    default='Investigate the Church')]
-
-        #Retrieves answer
-        self.answers = inquirer.prompt(q)
-        self.church = self.answers['church']
-
-        if self.church == 'Investigate the Church':
-            self.currentLevel = 30
-        if self.church == 'Speak with the king':
-            self.currentLevel = 31
-        if self.church == 'Start a resistance':
-            self.currentLevel = 32
-
-        os.system('cls')
-
+        pass
     def level12(self):
-        print("""
-        You have learned that the king is becoming increasingly unpopular among the people.
-        You decide to investigate further and gather more information about why this is happening.
-        As you make your way through the kingdom, you come across a group of commoners who are discussing their grievances with the king.
-        """)
-        commoners_ascii()
-        print("")
-
-        q = [
-            inquirer.List('grievances',
-                    message='What do the commoners tell you?',
-                    choices=['The king has been raising taxes', 'The king has been neglecting the needs of the people', 'The king has been making unpopular decisions'],
-                    default='The king has been raising taxes')]
-
-        self.answers = inquirer.prompt(q)
-        self.grievances = self.answers['grievances']
-
-        if self.grievances == 'The king has been raising taxes':
-            self.currentLevel = 33
-        if self.grievances == 'The king has been neglecting the needs of the people':
-            self.currentLevel = 34
-        if self.grievances == 'The king has been making unpopular decisions':
-            self.currentLevel = 35
-
-        os.system('cls')
-
+        pass
     def level13(self):
-        print("""
-        You have learned that the kingdom is facing economic troubles.
-        You decide to investigate and gather more information on the financial state of the kingdom.
-        You visit the royal treasury and speak to the royal treasurer to gain a better understanding of the kingdom's finances.
-        """)
-        treasury_ascii()
-        print("")
-
-        q = [
-            inquirer.List('treasury',
-                    message='What do you learn from the royal treasurer?',
-                    choices=['The kingdom is heavily in debt', 'The kingdom\'s resources are being mismanaged', 'The kingdom\'s taxes are too high'],
-                    default='The kingdom is heavily in debt')]
-
-        #Retrieves answer
-        self.answers = inquirer.prompt(q)
-        self.treasury = self.answers['treasury']
-
-        if self.treasury == 'The kingdom is heavily in debt':
-            self.currentLevel = 36
-        if self.treasury == 'The kingdom\'s resources are being mismanaged':
-            self.currentLevel = 37
-        if self.treasury == 'The kingdom\'s taxes are too high':
-            self.currentLevel = 38
-
-        os.system('cls')
-
+        pass
     def level14(self):
-        print("""
-        You have offered your services as a soldier for the Church.
-        The guard takes you to the Church's military leader, who thanks you for your willingness to fight for their cause.
-        They give you a choice of missions to undertake, all of which are important to the Church's goals.
-        """)
-        priest_ascii()
-        print("")
-
-        q = [
-            inquirer.List('mission',
-                    message='Which mission will you choose?',
-                    choices=['Protect a holy relic on a pilgrimage', 'Fight against a rival religious sect', 'Assist in the construction of a new cathedral'],
-                    default='Protect a holy relic on a pilgrimage')]
-
-        #Retrieves answer
-        self.answers = inquirer.prompt(q)
-        self.mission = self.answers['mission']
-
-        if self.mission == 'Protect a holy relic on a pilgrimage':
-            self.currentLevel = 39
-        if self.mission == 'Fight against a rival religious sect':
-            self.currentLevel = 40
-        if self.mission == 'Assist in the construction of a new cathedral':
-            self.currentLevel = 41
-
-        os.system('cls')
-
+        pass
     def level15(self):
-        print("""
-        You have decided to join the Church's clergy.
-        As you begin your training, you are tasked with performing various duties such as preaching to the congregation, administering sacraments, and providing spiritual guidance.
-        """)
-        church2_ascii()
-        print("")
-
-        q = [
-            inquirer.List('duties',
-                    message='What will you focus on?',
-                    choices=['Preaching and teaching', 'Providing spiritual guidance', 'Administering sacraments'],
-                    default='Preaching and teaching')]
-
-        self.answers = inquirer.prompt(q)
-        self.duties = self.answers['duties']
-
-        if self.duties == 'Preaching and teaching':
-            print("You spend your days preaching and teaching the word of God to the congregation.")
-        elif self.duties == 'Providing spiritual guidance':
-            print("You spend your days providing spiritual guidance to those in need.")
-        elif self.duties == 'Administering sacraments':
-                print("You spend your days administering sacraments to members of the congregation.")
-        self.currentLevel = 45
-            
-        os.system('cls')
-
+        pass
     def level16(self):
-        print("""
-        You have decided to make a donation to the Church.
-        You make a generous donation and receive a blessing from the Church's leaders.
-        """)
-        church3_ascii()
-        print("")
-
-        q = [
-            inquirer.List('contribution',
-                    message='What will you do next?',
-                    choices=['Make another donation', 'Leave the Church', 'Find a way to increase your influence within the Church'],
-                    default='Make another donation')]
-
-        self.answers = inquirer.prompt(q)
-        self.contribution = self.answers['contribution']
-
-        if self.contribution == 'Make another donation':
-            self.currentLevel = 42
-        if self.contribution == 'Leave the Church':
-            self.currentLevel = 43
-        if self.contribution == 'Find a way to increase your influence within the Church':
-            self.currentLevel = 44
-
-        os.system('cls')
-
+        pass
     def level17(self):
-        print("""
-        With the support of the village leader, you continue to gather allies and gain support from other towns and villages in the kingdom.
-        You also begin to build a reputation as a leader and a force for good among the people.
-        As you continue your journey, you come across a group of knights who are also looking to restore balance to the kingdom.
-        """)
-        knights_ascii()
-        print("")
-
-        q = [
-            inquirer.List('knights',
-            message='Will the knights join your cause?',
-            choices=['Yes, the knights agree to join your cause.', 'No, the knights cannot join your cause.'],
-                default='Yes, the knights agree to join your cause.')]
-
-        self.answers = inquirer.prompt(q)
-        self.knights = self.answers['knights']
-
-        if self.knights == 'Yes, the knights agree to join your cause.':
-            print("The knights have agreed to join your cause and support you in your mission.")
-            self.currentLevel = 22
-        elif self.knights == 'No, the knights cannot join your cause.':
-            print("The knights have refused to join your cause.")
-            self.currentLevel = 23
-
+        pass
     def level18(self):
-        print("""
-        The village leader refused to support you in your mission to restore balance to the kingdom.
-        You are left to ponder your next move, as you realize that gaining support from the local townfolk may be more difficult than you thought.
-        """)
-
-        q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Look for alternative allies', 'Reassess your approach', 'Give up and return home'],
-                    default='Look for alternative allies')]
-
-        self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
-
-        if self.nextmove == 'Look for alternative allies':
-            self.currentLevel = 27
-        if self.nextmove == 'Reassess your approach':
-            self.currentLevel = 28
-        if self.nextmove == 'Give up and return home':
-            self.currentLevel = 29
-
-        os.system('cls')
-
+        pass
     def level19(self):
-        print("""
-        Without the support of the villagers, you feel less confident in your mission.
-        You make your way to the castle and request an audience with the king.
-        The king listens to your proposal and is unhappy you were not able to gather allies for his cause.
-        """)
-        king_ascii()
-        print("")
-
-        q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Apologize to the king', 'Begin negotiations with the Church'],
-                    default='Gather an army')]
-
-        self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
-
-        if self.nextmove == 'Apologize to the king':
-            self.currentLevel = 46
-        if self.nextmove == 'Begin negotiations with the Church':
-            self.currentLevel = 47
-
-        os.system('cls')
-
+        pass
     def level20(self):
-        print("""
-        With the support of the entire village, you feel more confident in your mission.
-        You make your way to the castle and request an audience with the king.
-        The king listens to your proposal and agrees to help restore balance to the kingdom.
-        """)
-        king_ascii()
-        print("")
-
-        q = [
-            inquirer.List('nextmove',
-                    message='What will you do next?',
-                    choices=['Gather an army', 'Begin negotiations with the Church', 'Focus on economic reform'],
-                    default='Gather an army')]
-
-        self.answers = inquirer.prompt(q)
-        self.nextmove = self.answers['nextmove']
-
-        if self.nextmove == 'Gather an army':
-            self.currentLevel = 24
-        if self.nextmove == 'Begin negotiations with the Church':
-            self.currentLevel = 25
-        if self.nextmove == 'Focus on economic reform':
-            self.currentLevel = 26
-
-        os.system('cls')
-
+        pass
     def level21(self):
-        print("""
-        You decide to leave the village and continue your journey to gather allies.
-        As you travel, you come across a group of knights who have pledged their allegiance to the king. They are willing to join your cause and help restore balance to the kingdom.
-        """)
-        knights_ascii()
-        print("")
-
-        q = [
-            inquirer.List('join',
-                    message='Will you join the knights?',
-                    choices=['Yes', 'No'],
-                    default='Yes')]
-
-        self.answers = inquirer.prompt(q)
-        self.join = self.answers['join']
-
-        if self.join == 'Yes':
-            print("You have gained the support of the knights.")
-            self.currentLevel = 22
-        elif self.join == 'No':
-            print("You have refused the knights' offer of support.")
-            self.currentLevel = 23
-
-        os.system('cls')
-
+        pass
     def level22(self):
-        print("You are in level 22")
-
+        pass
     def level23(self):
-        print("You are in level 23")
-
+        pass
     def level24(self):
-        print("You are in level 24")
-
+        pass
     def level25(self):
-        print("You are in level 25")
-
-    def level26(self):
-        print("You are in level 26")
-
-    def level27(self):
-        print("You are in level 22")
-
-    def level28(self):
-        print("You are in level 23")
-
-    def level29(self):
-        print("You are in level 24")
-
-    def level30(self):
-        print("You are in level 25")
-
-    def level31(self):
-        print("You are in level 26")
-
-    def level32(self):
-        print("You are in level 22")
-
-    def level33(self):
-        print("You are in level 23")
-
-    def level34(self):
-        print("You are in level 24")
-
-    def level35(self):
-        print("You are in level 25")
-
-    def level36(self):
-        print("You are in level 23")
-
-    def level37(self):
-        print("You are in level 24")
-
-    def level38(self):
-        print("You are in level 25")
-
-    def level34(self):
-        print("You are in level 24")
-
-    def level35(self):
-        print("You are in level 25")
-
-    def level36(self):
-        print("You are in level 23")
-
-    def level37(self):
-        print("You are in level 24")
-
-    def level38(self):
-        print("You are in level 25")
-
-    def level39(self):
-        print("You are in level 24")
-
-    def level40(self):
-        print("You are in level 25")
-
-    def level41(self):
-        print("You are in level 23")
-
-    def level42(self):
-        print("You are in level 24")
-
-    def level43(self):
-        print("You are in level 25")
-
-    def level44(self):
-        print("You are in level 24")
-
-    def level45(self):
-        print("You are in level 25")
-
-    def level46(self):
-        print("You are in level 23")
-
-    def level47(self):
-        print("You are in level 24")
-
-    def level48(self):
-        print("You are in level 25")
-
-    def level49(self):
-        print("You are in level 24")
-
-    def level50(self):
-        print("You are in level 25")
+        pass
 
 g = Game()
