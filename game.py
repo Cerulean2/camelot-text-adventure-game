@@ -490,7 +490,7 @@ class Game:
             self.score -= 2
             self.level9_negotiate_threat()
         elif self.negotiate == 'Use charm and wit':
-            self.score == 2
+            self.score += 2
             self.level9_negotiate_charm()
 
         os.system('cls')
@@ -761,7 +761,7 @@ class Game:
         - Allow Logres to govern themselves, but with Camelot's oversight
         """)
 
-        money_ascii()
+        victory_ascii()
         print("")
 
         q = [
@@ -1220,20 +1220,17 @@ class Game:
         os.system('cls')
 
     def gameOverScreen(self):
-        total_decisions = 24
-        ideal_decision_percentage = (total_decisions + self.score) / (5 * total_decisions) * 100
-
         print(f"""
-        * End Game Score - ({int(ideal_decision_percentage)}/100) *
+        * End Game Score - ({self.score}) *
         \n""")
 
-        if ideal_decision_percentage == 100:
+        if self.score >= 25:
              print("Your decisions were Very Ideal. You made the best choices for the kingdom of Camelot and its people.")
-        elif ideal_decision_percentage >= 80:
+        elif self.score >= 15:
              print("Your decisions were Ideal. You made mostly the best choices for the kingdom of Camelot and its people.")
-        elif ideal_decision_percentage >= 50:
+        elif self.score >= 10:
              print("Your decisions were Slightly Ideal. You made a mix of good and not so good choices for the kingdom of Camelot and its people.")
-        elif ideal_decision_percentage >= 30:
+        elif self.score >= 5:
               print("Your decisions were Slightly Not Ideal. You made a mix of not so good and bad choices for the kingdom of Camelot and its people.")
         else:
              print("Your decisions were Not Ideal. You made mostly bad choices for the kingdom of Camelot and its people.")

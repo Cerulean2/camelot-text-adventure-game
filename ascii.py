@@ -93,11 +93,6 @@ def warriors_ascii():
             for line in f:
                 print(line.rstrip())
 
-def money_ascii():
-        with open('ASCII/money.txt', 'r') as f:
-            for line in f:
-                print(line.rstrip())
-
 def battle_ascii():
         with open('ASCII/battle.txt', 'r') as f:
             for line in f:
