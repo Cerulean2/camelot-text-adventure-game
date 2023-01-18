@@ -59,8 +59,10 @@ class Game:
 
         if self.startgame == 'Pledge allegiance to the king':
             self.currentLevel = 1
+            self.score = 100
         if self.startgame == 'Join the Church':
             self.currentLevel = 5
+            self.score = 95
 
         os.system('cls')
 
@@ -140,13 +142,13 @@ class Game:
         self.level_one = self.answers['level_one']
 
         if self.level_one == 'Sneak into Logres':
-            self.score += 1
+            self.score -= 5
             self.currentLevel = 2
         elif self.level_one == 'Send a diplomatic envoy':
-            self.score += 2
+            self.score += 5
             self.currentLevel = 3
         elif self.level_one == 'Send an army':
-            self.score -= 5
+            self.score -= 10
             self.currentLevel = 4
 
         os.system('cls')
@@ -178,15 +180,15 @@ class Game:
 
         if self.level2_sneak == 'Sway the advisor':
             print("You successfully sway the advisor to support Camelot.")
-            self.score += 2
+            self.score += 5
             self.currentLevel = 6
         elif self.level2_sneak == 'Kidnap Sir Kay':
             print("You attempt to kidnap Sir Kay, but the plan backfires and you are captured by Logres' guards.")
-            self.score -= 2
+            self.score -= 10
             self.currentLevel = 9
         elif self.level2_sneak == 'Leave Logres':
             print("You leave Logres and report back to Camelot with the information you have gathered.")
-            self.score += 1
+            self.score += 2
             self.currentLevel = 10
 
         os.system('cls')
@@ -216,11 +218,11 @@ class Game:
 
         if self.level3_diplomatic == 'Agree to the favor':
             print("You agree to the favor and accept the aid from Logres.")
-            self.score += 2
+            self.score += 5
             self.currentLevel = 11
         elif self.level3_diplomatic == 'Refuse the favor':
             print("You refuse the favor and decline the aid from Logres.")
-            self.score += 1
+            self.score -= 5
             self.currentLevel = 12
 
         os.system('cls')
@@ -251,7 +253,7 @@ class Game:
 
         if self.level4_conquer == 'Continue to fight':
             print("You continue to fight and eventually conquer Logres, gaining their support.")
-            self.score += 1
+            self.score -= 5
             self.currentLevel = 13
         elif self.level4_conquer == 'Negotiate a surrender':
             print("You negotiate a surrender with Logres, sparing many lives but at the cost of losing the element of surprise.")
@@ -259,7 +261,7 @@ class Game:
             self.currentLevel = 14
         elif self.level4_conquer == 'Retreat':
             print("You retreat and regroup, losing many lives but gaining valuable intel for the next battle.")
-            self.score -= 5
+            self.score += 2
             self.currentLevel = 15
 
         os.system('cls')
@@ -289,11 +291,11 @@ class Game:
 
         if self.level5_church == 'Peaceful recruitment':
             print("You successfully recruit new followers to the Church through peaceful means.")
-            self.score += 2
+            self.score += 10
             self.currentLevel = 7
         elif self.level5_church == 'Use force':
             print("You use force to convert non-believers to the Church's cause, but it backfires and causes resentment among the people.")
-            self.score -= 3
+            self.score -= 15
             self.currentLevel = 8
 
         os.system('cls')
@@ -324,15 +326,15 @@ class Game:
 
         if self.level6 == 'Train new soldiers':
             print("You begin training new soldiers to bolster Camelot's army.")
-            self.score += 1
+            self.score += 5
             self.currentLevel = 16
         elif self.level6 == 'Strengthen alliances':
             print("You begin strengthening alliances with neighboring kingdoms.")
-            self.score += 2
+            self.score += 10
             self.currentLevel = 17
         elif self.level6 == 'Invest in new technologies':
             print("You begin investing in new technologies and weapons.")
-            self.score += 1
+            self.score += 2
             self.currentLevel = 18
 
         os.system('cls')
@@ -363,13 +365,13 @@ class Game:
         self.level_seven = self.answers['level_seven']
 
         if self.level_seven == 'Build a new church':
-            self.score += 2
+            self.score += 5
             self.currentLevel = 19
         elif self.level_seven == 'Send missionaries':
-            self.score += 1
+            self.score -= 2
             self.currentLevel = 20
         elif self.level_seven == 'Focus on aid':
-            self.score += 2
+            self.score += 5
             self.currentLevel = 21
 
         os.system('cls')
@@ -400,13 +402,13 @@ class Game:
         self.level8 = self.answers['level8']
 
         if self.level8 == 'Apologize and make amends':
-            self.score += 1
+            self.score += 2
             self.currentLevel = 22
         elif self.level8 == 'Double down on methods':
             self.score -= 5
             self.currentLevel = 23
         elif self.level8 == 'Leave the village':
-            self.score -= 1
+            self.score += 1
             self.currentLevel = 24
 
         os.system('cls')
@@ -451,10 +453,10 @@ class Game:
         self.level9_fate = self.answers['level9_fate']
 
         if self.level9_fate == 'Escape':
-            self.score += 1
+            self.score += 2
             self.level9_escape()
         elif self.level9_fate == 'Negotiate':
-            self.score += 1
+            self.score += 2
             self.level9_negotiate()
         elif self.level9_fate == 'Accept fate':
             self.gameOver = True
@@ -484,13 +486,13 @@ class Game:
         self.negotiate = self.answers['negotiate']
 
         if self.negotiate == 'Apologize and offer help':
-            self.score += 1
+            self.score += 2
             self.level9_negotiate_apology()
         elif self.negotiate == 'Threaten Sir Kay':
-            self.score -= 2
+            self.score -= 5
             self.level9_negotiate_threat()
         elif self.negotiate == 'Use charm and wit':
-            self.score += 2
+            self.score += 5
             self.level9_negotiate_charm()
 
         os.system('cls')
@@ -506,10 +508,10 @@ class Game:
         self.level9_escape = self.answers['level9_escape']
 
         if self.level9_escape == 'Try to negotiate with Logres again':
-            self.score += 1
+            self.score += 2
             self.currentLevel = 3
         elif self.level9_escape == 'Prepare for war':
-            self.score -= 2
+            self.score -= 5
             self.currentLevel = 17
         elif self.level9_escape == 'Abandon the mission':
             self.gameOver = True
@@ -543,7 +545,7 @@ class Game:
         self.level9_kidnap = self.answers['level9_kidnap']
 
         if self.level9_kidnap == 'Attempt to escape':
-            self.score += 1
+            self.score += 2
             self.level9_escape()
         elif self.level9_kidnap == 'Negotiate for release':
             self.score += 2
@@ -578,7 +580,7 @@ class Game:
         if self.alliances == 'Offer aid':
             print("You offer aid to other kingdoms in exchange for their alliance.")
             print("This helps to alleviate some of the kingdom's crisis but also costs resources.")
-            self.score += 1
+            self.score += 5
             self.currentLevel = 11
         elif self.alliances == 'Use leverage':
             print("You use leverage and threats to form alliances.")
@@ -622,7 +624,7 @@ class Game:
             print("You send a small group of soldiers to aid Logres in their war.")
             print("This will help Logres but may not be enough to defeat their enemy.")
         elif self.logres == 'Send a large army':
-            self.score += 1
+            self.score += 5
             self.afterLevel11()
             print("You send a large army to aid Logres in their war.")
             print("This will greatly aid Logres in their war but will also leave Camelot vulnerable.")
@@ -696,7 +698,7 @@ class Game:
         if self.level16 == 'Send more soldiers':
             print("You send more soldiers to aid Logres.")
             print("This increases the chances of victory but also puts more of Camelot's soldiers at risk.")
-            self.score += 1
+            self.score += 2
             self.currentLevel = 16
         elif self.level16 == 'Negotiate a ceasefire':
             print("You attempt to negotiate a ceasefire with the neighboring kingdom.")
@@ -736,7 +738,7 @@ class Game:
         if self.favor == 'Negotiate a different favor':
             os.system('cls')
             print("You attempt to negotiate a different favor with Logres.")
-            self.score += 1
+            self.score += 2
             self.currentLevel += 1
         elif self.favor == 'Prepare for war':
             os.system('cls')
@@ -814,7 +816,7 @@ class Game:
 
         if self.level14_surrender == 'Accept alliance':
             print("You accept the alliance and work towards a peaceful resolution with Logres.")
-            self.score += 1
+            self.score += 2
             self.gameOver = True
         elif self.level14_surrender == 'Refuse alliance':
             print("You refuse the alliance and continue to push for a victory, potentially leading to more deaths.")
@@ -822,7 +824,7 @@ class Game:
             self.gameOver = True
         elif self.level14_surrender == 'Negotiate better terms':
             print("You attempt to negotiate better terms for the alliance with Logres.")
-            self.score += 1
+            self.score += 2
             self.gameOver = True
 
         os.system('cls')
@@ -1221,16 +1223,16 @@ class Game:
 
     def gameOverScreen(self):
         print(f"""
-        * End Game Score - ({self.score}) *
+        * End Game Score - ({self.score}/100) *
         \n""")
 
-        if self.score >= 25:
+        if self.score >= 100:
              print("Your decisions were Very Ideal. You made the best choices for the kingdom of Camelot and its people.")
-        elif self.score >= 15:
+        elif self.score <= 75:
              print("Your decisions were Ideal. You made mostly the best choices for the kingdom of Camelot and its people.")
-        elif self.score >= 10:
+        elif self.score <= 50:
              print("Your decisions were Slightly Ideal. You made a mix of good and not so good choices for the kingdom of Camelot and its people.")
-        elif self.score >= 5:
+        elif self.score <= 25:
               print("Your decisions were Slightly Not Ideal. You made a mix of not so good and bad choices for the kingdom of Camelot and its people.")
         else:
              print("Your decisions were Not Ideal. You made mostly bad choices for the kingdom of Camelot and its people.")
