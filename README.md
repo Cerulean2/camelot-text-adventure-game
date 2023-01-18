@@ -1,4 +1,4 @@
-### "Welcome to Camelot, a text-based adventure game set in a medieval fantasy world. In this game, you play as a knight tasked with helping the city of Camelot defeat the terrorizing reign of the Catholic Church and restore power to the immoral king.
+### "Welcome to Camelot, a text-based adventure game set in a medieval fantasy world. In this game, you play as a knight tasked with helping the city of Camelot defeat the terrorizing reign of the Catholic Church and restore power to the king"
 
 As you explore the city, you will encounter various characters and locations, including a blacksmith where you can craft new equipment. Along the way, you will need to make decisions and solve puzzles to progress through the game.
 
